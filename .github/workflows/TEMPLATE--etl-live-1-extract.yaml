@@ -34,5 +34,5 @@ jobs:
             --memory 8192MB \
             --timeout 540s \
             --trigger-event google.cloud.pubsub.topic.v1.messagePublished \
-            --trigger-resource projects/${{ secrets.GCP_PROJECT_ID }}/topics/TEMPLATE-etl-live \
-            --service-account etl-executor@infotrust-internal-integration.iam.gserviceaccount.com  # Specify service account
+            --trigger-resource projects/${{ secrets.GCP_PROJECT_ID }}/topics/template-etl-live-sub \
+            --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com  # Specify service account
