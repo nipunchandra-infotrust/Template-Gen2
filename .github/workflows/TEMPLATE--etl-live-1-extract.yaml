@@ -21,12 +21,12 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_CREDENTIALS_JSON }}  # This is good!
+          service_account_key: ${{ secrets.GCP_SA_CREDENTIALS_JSON }}
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v1  # Add this step!
+        uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GCP_SA_CREDENTIALS_JSON }} # Use the same secret here
+          credentials_json: ${{ secrets.GCP_SA_CREDENTIALS_JSON }}
 
       - name: Deploy Cloud Function (Gen 2)
         run: |
@@ -39,5 +39,5 @@ jobs:
             --memory 8192MB \
             --timeout 540s \
             --trigger-event google.cloud.pubsub.topic.v1.messagePublished \
-            --trigger-resource projects/${{ secrets.GCP_PROJECT_ID }}/topics/template-etl-live-sub \
-            --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com
+            --trigger-resource projects/${{ secrets.GCP_PROJECT_ID }}/topics/template_etl_live_sub \  # Make sure this topic exists!
+            --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com # Ensure this SA has the correct permissions.
