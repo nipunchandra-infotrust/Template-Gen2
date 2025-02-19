@@ -21,8 +21,12 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_CREDENTIALS_JSON }}
-          gen2: 'True'
+          service_account_key: ${{ secrets.GCP_SA_CREDENTIALS_JSON }}  # This is good!
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1  # Add this step!
+        with:
+          credentials_json: ${{ secrets.GCP_SA_CREDENTIALS_JSON }} # Use the same secret here
 
       - name: Deploy Cloud Function (Gen 2)
         run: |
