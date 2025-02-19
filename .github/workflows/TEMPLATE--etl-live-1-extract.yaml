@@ -39,5 +39,5 @@ jobs:
             --memory 8192MB \
             --timeout 540s \
             --trigger-event google.cloud.pubsub.topic.v1.messagePublished \
-            --trigger-resource projects/${{ secrets.GCP_PROJECT_ID }}/topics/template_etl_live_sub \  # Make sure this topic exists!
+            --trigger-resource projects/${{ secrets.GCP_PROJECT_ID }}/topics/template_etl_live_sub 
             --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com # Ensure this SA has the correct permissions.
