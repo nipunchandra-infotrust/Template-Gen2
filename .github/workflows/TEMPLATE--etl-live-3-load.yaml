@@ -31,7 +31,7 @@ jobs:
       run: |
           gcloud functions deploy TEMPLATE--etl-live-3-load \
             --gen2 \
-            --region us-east1 \
+            --region us \
             --runtime nodejs18 \
             --source gcp/cloud-functions/TEMPLATE--etl-live-3-load \
             --entry-point load \
