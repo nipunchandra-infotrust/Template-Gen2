@@ -15,23 +15,28 @@ jobs:
 
     steps:
     - uses: 'actions/checkout@v3'
+    
+    - name: Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+            project_id: ${{ secrets.GCP_PROJECT_ID }}
+            service_account_key: ${{ secrets.GCP_SA_CREDENTIALS_JSON }}
 
-    - id: 'auth'
+    - name: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
         credentials_json: '${{ secrets.GCP_SA_CREDENTIALS_JSON }}'
 
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-cloud-functions@v1'
-      with:
-        name: 'TEMPLATE--etl-live-3-load'
-        entry_point: 'load'
-        runtime: 'nodejs18'
-        memory_mb: '8192'
-        region: 'us-east1'
-        timeout: '540'
-        source_dir: '${{ github.workspace }}/gcp/cloud-functions/TEMPLATE--etl-live-3-load'
-        event_trigger_type: google.storage.object.finalize
-        event_trigger_resource: 'projects/${{ secrets.GCP_PROJECT_ID }}/topics/test'
-        event_trigger_service: storage.googleapis.com
-        service_account_email: 'test-648@bits-sandbox-450720.iam.gserviceaccount.com'
+    - name: 'deploy'
+      run: |
+          gcloud functions deploy TEMPLATE--etl-live-1-load \
+            --gen2 \
+            --region us-east1 \
+            --runtime nodejs18 \
+            --source gcp/cloud-functions/TEMPLATE--etl-live-1-load \
+            --entry-point extract \
+            --memory 8192MB \
+            --timeout 540s \
+            --trigger-event-filters="type=google.cloud.storage.object.v1.finalized" \
+            --trigger-location=us-east1 \
+            --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com
