@@ -30,14 +30,13 @@ jobs:
     - name: 'deploy'
       run: |
           gcloud functions deploy TEMPLATE--etl-live-3-load \
-            --gen2 \
-            --region us-east1 \
-            --runtime nodejs18 \
-            --source gcp/cloud-functions/TEMPLATE--etl-live-3-load \
-            --entry-point load \
-            --memory 8192MB \
-            --timeout 540s \
-            --trigger-event-filters="type=google.cloud.storage.object.v1.finalized" \
-            --trigger-event-filters="bucket=test12344513445" \
-            --trigger-location=us-east1 \
-            --service-account 'test-648@bits-sandbox-450720.iam.gserviceaccount.com'
+          --gen2 \
+          --region us-east1 \
+          --runtime nodejs18 \
+          --source gcp/cloud-functions/TEMPLATE--etl-live-3-load \
+          --entry-point load \
+          --memory 8192MB \
+          --timeout 540s \
+          --trigger-event-filters="type=google.cloud.storage.object.v1.finalized,bucket=test12344513445" \
+          --trigger-location=us-east1 \
+          --service-account 'test-648@bits-sandbox-450720.iam.gserviceaccount.com'
