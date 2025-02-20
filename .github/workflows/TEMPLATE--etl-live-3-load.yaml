@@ -34,4 +34,4 @@ jobs:
         event_trigger_type: google.storage.object.finalize
         event_trigger_resource: 'projects/${{ secrets.GCP_PROJECT_ID }}/buckets/TEMPLATE'
         event_trigger_service: storage.googleapis.com
-        service_account_email: 'etl-executor@infotrust-internal-integration.iam.gserviceaccount.com'
+        service_account_email: 'test-648@bits-sandbox-450720.iam.gserviceaccount.com'
