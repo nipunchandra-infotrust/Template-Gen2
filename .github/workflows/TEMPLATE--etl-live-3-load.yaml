@@ -40,4 +40,4 @@ jobs:
             --trigger-event-filters="type=google.cloud.storage.object.v1.finalized" \
             --trigger-event-filters="bucket=test12344513445" \
             --trigger-location=us-east1 \
-            --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com
+            --service-account 'test-648@bits-sandbox-450720.iam.gserviceaccount.com'
