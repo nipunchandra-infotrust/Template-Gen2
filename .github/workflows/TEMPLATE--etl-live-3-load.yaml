@@ -33,7 +33,7 @@ jobs:
             --gen2 \
             --region us-east1 \
             --runtime nodejs18 \
-            --source gcp/cloud-functions/TEMPLATE--etl-live-1-load \
+            --source gcp/cloud-functions/TEMPLATE--etl-live-3-load \
             --entry-point extract \
             --memory 8192MB \
             --timeout 540s \
