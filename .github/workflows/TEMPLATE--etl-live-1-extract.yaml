@@ -38,5 +38,5 @@ jobs:
             --entry-point extract \
             --memory 8192MB \
             --timeout 540s \
-            --trigger-topic test
+            --trigger-topic test \
             --service-account test-648@bits-sandbox-450720.iam.gserviceaccount.com # Ensure this SA has the correct permissions.
